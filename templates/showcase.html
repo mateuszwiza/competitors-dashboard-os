@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        <link href="https://www.q-park.com/xmlpages/resources/TXP/qpark_ar_2016/img/favicon.ico" rel="icon" type="image/x-icon">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQ0BEH22C8"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-VQ0BEH22C8');
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div class="left">
+            <div id="map"></div>
+            <div class="keyleft">
+            <img class="iconimg" src=https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png alt="Green Icon"><p> - Selected position</p>
+            <img class="iconimg" src=https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png alt="Red Icon"><p> - Q-Park Facility</p>
+            </div><div class="keyright">
+            <img class="iconimg" src=https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-black.png alt="Black Icon"><p> - Key competitor facility</p>
+            <img class="iconimg" src=https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-grey.png alt="Grey Icon"><p> - Other competitor facility</p>
+            </div>
+            <div class="keyrightright"><a href="https://qurius.q-park.com/pages/viewpage.action?spaceKey=QBI&title=Release+notes&preview=/1661764549/1692032524/Competitors%20Dashboard%20Manual.pdf" target="_blank">Dashboard Manual</a></div>
+            </div>
+
+            <div class="right">
+            <div class="kpis">
+            <p id="ops"><select id="ops_select" name="operator"><option value="all">All operators</option>{{op_options|safe}}</select><button type="button" onclick="filter_ops()">Filter</button></p>
+                <div id="kpis_all">
+                    <div class="col">
+                        <div class="row1"><p>Total number of spaces: </p><h3 id="size_h3">{{ spaces }}</h3></div>
+                        <div class="row2"><p id="size_q">Q-park:  {{spaces2}} ({{qperc}} %)</p></div>
+                        <div class="row3"><p id="size_nq">Others:  {{spaces3}} ({{nperc}} %)</p></div>
+                    </div>
+                    <div class="col">
+                        <div class="row1"><p>Average price per 1 hour:</p><p class="under"> Monday   |  Saturday</p><h3 id="hour_h3">{{hour}} {{cur}}  |  {{hour_we}} {{cur}}</h3></div>
+                        <div class="row2"><p id="hour_q">Q-park:  {{hour2}} {{cur}} | {{hour2_we}} {{cur}}</p></div>
+                        <div class="row3"><p id="hour_nq">Others:  {{hour3}} {{cur}} | {{hour3_we}} {{cur}}</p></div>
+                    </div>
+                    <div class="col">
+                        <div class="row1"><p>Average price per 1 day:</p><p class="under"> Monday   |  Saturday</p><h3 id="day_h3">{{day}} {{cur}}  |  {{day_we}} {{cur}}</h3></div>
+                        <div class="row2"><p id="day_q">Q-park:  {{day2}} {{cur}} | {{day2_we}} {{cur}}</p></div>
+                        <div class="row3"><p id="day_nq">Others:  {{day3}} {{cur}} | {{day3_we}} {{cur}}</p></div>
+                    </div>
+                </div>
+                <div id="kpis_ops" style="display:none;">
+                    <div class="col">
+                        <div class="row1"><p>Total number of spaces: </p><h3 id="ops_spaces"></h3></div>
+                        <div class="row3"><p id="size_nq">All:  {{spaces}}</p></div>
+                    </div>
+                    <div class="col">
+                        <div class="row1"><p>Average price per 1 hour:</p><p class="under"> Monday   |  Saturday</p><h3 id="ops_hour"></h3></div>
+                        <div class="row3"><p id="hour_nq">All:  {{hour}} {{cur}} | {{hour_we}} {{cur}}</p></div>
+                    </div>
+                    <div class="col">
+                        <div class="row1"><p>Average price per 1 day:</p><p class="under"> Monday   |  Saturday</p><h3 id="ops_day"></h3></div>
+                        <div class="row3"><p id="day_nq">All:  {{day}} {{cur}} | {{day_we}} {{cur}}</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tablediv">
+            <table id="master_table">
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Operator</th>
+                <th>Spaces</th>
+                <th>Distance</th>
+                <th>Weekhour</th>
+                <th>Weekday</th>
+                <th>Weekend hour</th>
+                <th>Weekend day</th>
+                <th>Incl?</th>
+              </tr>
+              {{rows|safe}}
+            </table></div>
+            <div class="dl">Download as <a href="/static/export.xlsx" download="export_{{now}}.xlsx">EXCEL</a> | <a href="/static/export.csv" download="export_{{now}}.csv">CSV</a></div>
+            </div>
+        </div>
+
+        <script src="/static/scripts/icons.js"></script>
+        <script src="/static/scripts/coordinates.js"></script>
+        <script src="/static/scripts/highlight.js"></script>
+        <script src="/static/scripts/checkbox.js"></script>
+        <script src="/static/scripts/filter.js"></script>
+        <script>
+            var day_v = {{day}};
+            var hour_v = {{hour}};
+            var day_v_we = {{day_we}};
+            var hour_v_we = {{hour_we}};
+            var space_v = {{spaces}};
+            var day_q_v = {{day2}};
+            var hour_q_v = {{hour2}};
+            var day_q_v_we = {{day2_we}};
+            var hour_q_v_we = {{hour2_we}};
+            var space_q_v = {{spaces2}}
+            var day_nq_v = {{day3}};
+            var hour_nq_v = {{hour3}};
+            var day_nq_v_we = {{day3_we}};
+            var hour_nq_v_we = {{hour3_we}};
+            var space_nq_v = {{spaces3}}
+            var count_v1 = {{count1}};
+            var count_v2 = {{count2}};
+            var count_v3 = {{count3}};
+            var count_v4 = {{count4}};
+            var count_q_v1 = {{count21}};
+            var count_q_v2 = {{count22}};
+            var count_q_v3 = {{count23}};
+            var count_q_v4 = {{count24}};
+            var count_nq_v1 = {{count31}};
+            var count_nq_v2 = {{count32}};
+            var count_nq_v3 = {{count33}};
+            var count_nq_v4 = {{count34}};
+            var currency = "{{cur}}";
+
+            var map = L.map('map').setView([{{latt}}, {{lonn}}], 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'}).addTo(map);
+
+            
+
+            dragable = L.marker([{{latt}}, {{lonn}}], {icon: locIcon, draggable:true});
+            dragable.addTo(map);
+            {{markers|safe}}
+        </script>
+        <script>
+            var slider = document.getElementById("myRange");
+           var output = document.getElementById("demo");
+           output.innerHTML = slider.value; // Display the default slider value
+
+           // Update the current slider value (each time you drag the slider handle)
+           slider.oninput = function() {
+               output.innerHTML = this.value;
+           }
+
+           function outputUpdate(rad) {
+               document.querySelector('#radius').value = rad;
+           }
+       </script>
+    </body>
+</html>

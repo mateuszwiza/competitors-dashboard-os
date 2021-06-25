@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        <link href="https://www.q-park.com/xmlpages/resources/TXP/qpark_ar_2016/img/favicon.ico" rel="icon" type="image/x-icon">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K725MEXQYW"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-K725MEXQYW');
+        </script>
+    </head>
+    <body>
+        {{errors}}
+        <a href="https://competitors-dashboard-test.q-park.com/"><img id="logo" src="https://q-park-online-prod.azureedge.net/-/media/images/payment-method-images/qpark-be/logo-q-park.png?rev=0be2bd4e-9b21-4d7a-a1be-3d1c32c35b45&hash=324BC3848BD5D89A264E35715DECCDFB" alt="Q-Park"></a>
+        <div class="input_form">
+        <form method="post" action=".">
+            <p id="addp">Address/POI: <input name="add" id="addbox" placeholder="e.g. Stationsplein 17, Maastricht"/></p>
+            <p id="countp"><select name="country"><option value="nl">Netherlands</option><option value="gb">United Kingdom</option><option value="be">Belgium</option><option value="de">Germany</option><option value="fr">France</option><option value="ie">Ireland</option><option value="dk">Denmark</option></select></p></br>
+            <p id="latp"><b>OR </b> Latitude: <input name="lat" id="latbox"/></p>
+            <p>Longitude: <input name="lon" id="lonbox"/></p>
+            <button type="button" onclick="get_coordinates()">Get from map</button>
+            <div class="slidecontainer">
+                <p>Radius:</p>
+                <input type="range" name="radius" min="100" max="7500" step="100" value="2000" class="slider" id="myRange" oninput="outputUpdate(value)">
+                <output for="fader" id="radius">2000</output><p id="meters">meters</p>
+                <p><input type="submit" value="Show competitors" id="main_button" /></p>
+            </div>
+
+
+        </form>
+        </div>
+
+        <div class="content"><div class="left">
+            <div id="mapid"></div>
+            <div class="keyrightright"><a href="https://qurius.q-park.com/pages/viewpage.action?spaceKey=QBI&title=Release+notes&preview=/1661764549/1692032524/Competitors%20Dashboard%20Manual.pdf" target="_blank">Dashboard Manual</a></div>
+        </div></div>
+
+
+        <script>
+             var slider = document.getElementById("myRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value; // Display the default slider value
+
+            // Update the current slider value (each time you drag the slider handle)
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+            }
+
+            function outputUpdate(rad) {
+                document.querySelector('#radius').value = rad;
+            }
+        </script>
+
+        <script src="/static/scripts/icons.js"></script>
+        <script src="/static/scripts/coordinates.js"></script>
+        <script>
+            var latitude = 50.847974;
+            var longitude = 5.706024;
+
+            var mymap = L.map('mapid').setView([latitude, longitude], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'}).addTo(mymap);
+            var dragable = L.marker([50.847974, 5.706024], {icon: locIcon, draggable:true});
+            dragable.addTo(mymap);
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,412 @@
+.input_form{
+    font-family: Lato;
+    width: auto;
+    margin-top: 20px;
+    float: left;
+}
+
+.input_form input{
+    border: grey solid 0.3px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.input_form #addp{
+    margin-bottom: 0;
+}
+.input_form #countp{
+    margin-bottom: 0;
+}
+.input_form select{
+    border-radius: 5px;
+    margin-top:1.5px;
+}
+
+.input_form #latp{
+    clear:both !important;
+}
+
+.input_form #addbox{
+    width: 345px;
+}
+.input_form #latbox{
+    width: 140px;
+}
+.input_form #lonbox{
+    width: 140px;
+}
+
+.input_form button{
+    margin-top:17.5px;
+    margin-left: 15px;
+}
+
+.input_form #main_button{
+    font-weight: bold;
+    width: 137px;
+    background-color: #f01e31;
+    color: white;
+}
+
+#logo{
+    height: 80px;
+    width: auto;
+    float: left;
+    margin-top: 45px;
+}
+
+.input_form p{
+    float: left;
+    padding-left: 10px;
+}
+
+.input_form .slidecontainer{
+    clear: both;
+}
+
+.input_form .slidecontainer p{
+    float:left;
+    margin-top: 2px;
+    padding-right: 10px;
+}
+
+.input_form .slidecontainer #myRange{
+    float:left;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.input_form .slidecontainer output{
+    float:left;
+    margin-top: 2px;
+    padding-right: 5px;
+}
+
+.input_form .slidecontainer #meters{
+    padding-left:0;
+}
+
+
+
+.content{
+    clear: both;
+    margin: 25px;
+    padding-top: 25px;
+    font-family: Lato;
+}
+
+.content #map{
+    height: 600px;
+    width: 45vw;
+}
+
+.content #mapid{
+    height: 600px;
+    width: 45vw;
+}
+
+.content .left{
+    float:left;
+}
+
+.content .left .keyleft{
+    float:left;
+    margin-right:25px;
+    margin-top:10px;
+}
+
+.content .left .keyright{
+    float:left;
+    margin-right:25px;
+    margin-top:10px;
+}
+
+.content .left .keyleft img{
+    float:left;
+    padding-left: 2px;
+    height: 25px;
+}
+
+.content .left .keyright img{
+    float:left;
+    padding-left: 2px;
+    height: 25px;
+}
+
+.content .left p{
+    height:25px;
+    font-size:10px;
+    padding-left:20px;
+    padding-top:6px;
+    margin:0;
+}
+
+.content .right{
+    float:left;
+    margin-left: 20px;
+    max-width:40vw;
+    max-height: 600px;
+}
+
+.content .right .kpis{
+    width:650px;
+}
+
+#ops{
+    text-align:right;
+    margin-top: -35;
+}
+
+#ops_select{
+    margin-right: 10px;
+    height: 21px;
+    border-radius: 5px;
+}
+
+#ops button{
+    height: 20px;
+}
+
+option.qp{
+    font-weight: bold;
+    color: #f01e31;
+}
+option.main{
+    font-weight: bold;
+}
+
+.content .right .kpis .col{
+    float:left;
+    margin-top: -20px;
+    margin-right: 14px;
+    margin-left: 14px;
+}
+
+.content .right .kpis .row1{
+    text-align: center;
+}
+.content .right .kpis .row1 p{
+    margin-bottom:10px;
+}
+.under{
+    font-size: 10px;
+    margin-bottom:0 !important;
+    margin-left:2px;
+}
+#size_h3{
+    margin-top:22px !important;
+}
+#ops_spaces{
+    margin-top:22px !important;
+}
+.content .right .kpis .row1 h3{
+    margin-top:0;
+    font-size:25px;
+    margin-bottom:15px;
+}
+.content .right .kpis .row2{
+    margin-left:20px;
+    color:red;
+    font-size:10px;
+    margin-top:0;
+}
+.content .right .kpis .row3{
+    margin-left:20px;
+    color:gray;
+    font-size:10px;
+    margin-bottom:18px;
+}
+
+
+.content .right .tablediv{
+    overflow:scroll;
+    clear:both;
+    max-height: 465px;
+    max-width:40vw;
+}
+
+.content .right table{
+    font-family: Lato;
+    font-size: 12px;
+}
+
+.content .right table tr:first-child{
+    background: #f01e31;
+    color: white;
+    height: 20px;
+}
+
+.content .right table tr:hover{
+    background: #f01e31;
+    color: white;
+}
+
+.content .right table input{
+    background: #f01e31;
+    color: white;
+}
+
+.dl{
+    margin-top:5px;
+    font-size:12px;
+    color:gray;
+}
+
+.dl a{
+    text-decoration:none;
+    font-size:12px;
+    color:gray;
+}
+
+.dl a:hover{
+    text-decoration:none;
+    font-size:12px;
+    color:red;
+    margin-top:5px;
+}
+
+.left .keyrightright a{
+    text-decoration:none;
+    font-size:12px;
+    color:gray;
+}
+.left .keyrightright a:hover{
+    text-decoration:none;
+    font-size:12px;
+    color:red;
+    margin-top:5px;
+}
+.left .keyrightright{
+    text-align:right;
+    margin-top: 3.5px;
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  width: 250px;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f01e31;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f01e31;
+  cursor: pointer;
+}
+
+.leaflet-popup-content{
+    text-align: center;
+}
+
+.leaflet-div-icon {
+	background: transparent !important;
+	border: none !important;
+}
+
+.leaflet-marker-icon .number{
+	top: -54px;
+	font-size: 12px;
+	width: 25px;
+	text-align: center;
+	position:relative;
+}
+
+@media only screen and (max-device-width: 1025px) {
+  .content .right{
+    clear:both;
+    margin-left: 0px;
+    max-width:40vw;
+    max-height: 600px;
+    
+    }
+    
+      .content .right{
+    clear:both;
+    margin-left: 0px;
+    max-height: 600px;
+}
+.content .right .kpis{
+    margin-top: 30px;
+}
+  .content #map{
+    height: 600px;
+    width: 90vw;
+}
+
+.content #mapid{
+    height: 600px;
+    width: 90vw;
+}
+
+.content .right .tablediv{
+    overflow:scroll;
+    clear:both;
+    max-height: 465px;
+    max-width: 90vw;
+    width:90vw;
+}
+
+#logo{
+height:40px;
+}
+
+}
+
+@media only print{
+  .content .right{
+    clear:both;
+    margin-left: 0px;
+    max-height: 600px;
+}
+  .content #map{
+    height: 600px;
+    width: auto;
+    width: 90vw;
+}
+
+.content #mapid{
+    height: 600px;
+    width: 90vw;
+}
+
+.content .right .tablediv{
+    overflow:initial;
+    clear:both;
+    max-height: 465px;
+    max-width: 90vw;
+    width:90vw;
+}
+.content .right .kpis{
+    margin-top: 50px;
+}
+#logo{
+height:40px;
+}
+}
